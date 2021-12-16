@@ -3,45 +3,21 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-///Developed by Indie Studio
-///https://www.assetstore.unity3d.com/en/#!/publisher/9268
-///www.indiestd.com
-///info@indiestd.com
 
 public class Shape : MonoBehaviour
 {
-	/// <summary>
-	/// The paths of the shape.
-	/// </summary>
+	
 	public List<EnglishTracingBook.Path> paths = new List<EnglishTracingBook.Path> ();
-
-	/// <summary>
-	/// The audio clip of the shape , used for spelling.
-	/// </summary>
 	public AudioClip clip;
-
-	//0 - 10 seconds : 3 stars
 	[Range (0, 500)]
-	public int threeStarsTimePeriod = 10;
-
-	//11 -20 seconds : 2 stars
-	//more than 20 seconds : one star
+	public int threeStarsTimePeriod = 10;	
 	[Range (0, 500)]
 	public int twoStarsTimePeriod = 20;
-
-	/// <summary>
-	/// Whether the shape is completed or not.
-	/// </summary>
 	[HideInInspector]
 	public bool completed;
 
-	/// <summary>
-	/// Whether to enable the priority order or not.
-	/// </summary>
 	[HideInInspector]
 	public bool enablePriorityOrder=true;
-
-	// Use this for initialization
 	void Start ()
 	{
 		if (GameManager.compoundShape == null) {
@@ -52,9 +28,6 @@ public class Shape : MonoBehaviour
 		}
 	}
 
-	/// <summary>
-	/// Spell the shape.
-	/// </summary>
 	public void Spell ()
 	{
 		if (clip == null) {
@@ -65,11 +38,6 @@ public class Shape : MonoBehaviour
 		AudioSources.instance.audioSources [1].clip = clip;
 		AudioSources.instance.audioSources [1].Play ();
 	}
-
-	/// <summary>
-	/// Show the numbers of the path .
-	/// </summary>
-	/// <param name="index">Index.</param>
 	public void ShowPathNumbers (int index)
 	{
 		for (int i = 0; i < paths.Count; i++) {
@@ -80,11 +48,6 @@ public class Shape : MonoBehaviour
 			}
 		}
 	}
-
-	/// <summary>
-	/// Get the index of the current path.
-	/// </summary>
-	/// <returns>The current path index.</returns>
 	public int GetCurrentPathIndex ()
 	{
 		int index = -1;
@@ -110,12 +73,6 @@ public class Shape : MonoBehaviour
 
 		return index;
 	}
-
-	/// <summary>
-	/// Determine whether this instance is current path or not.
-	/// </summary>
-	/// <returns><c>true</c> if this instance is current path; otherwise, <c>false</c>.</returns>
-	/// <param name="path">Path.</param>
 	public bool IsCurrentPath (EnglishTracingBook.Path path)
 	{
 		bool isCurrentPath = false;
@@ -143,10 +100,6 @@ public class Shape : MonoBehaviour
 
 		return isCurrentPath;
 	}
-
-	/// <summary>
-	/// Enable the tracing hand.
-	/// </summary>
 	public void EnableTracingHand ()
 	{
 		int currentPathIndex = GetCurrentPathIndex ();
@@ -157,10 +110,6 @@ public class Shape : MonoBehaviour
 		animator.SetTrigger (name);
 		animator.SetTrigger (paths [currentPathIndex].name.Replace ("Path", name.Split ('-') [0]));
 	}
-
-	/// <summary>
-	/// Disable the tracing hand.
-	/// </summary>
 	public void DisableTracingHand ()
 	{
 		int currentPathIndex = GetCurrentPathIndex ();
@@ -171,11 +120,6 @@ public class Shape : MonoBehaviour
 		//animator.SetBool (name,false);
 		animator.SetBool (paths [currentPathIndex].name.Replace ("Path", name.Split ('-') [0]), false);
 	}
-
-	/// <summary>
-	/// Get the title of the shape.
-	/// </summary>
-	/// <returns>The title.</returns>
 	public string GetTitle ()
 	{
 		if (GameManager.compoundShape == null) {

@@ -19,31 +19,38 @@ public class WinDialog : MonoBehaviour
 		void Start ()
 		{
 				///Setting up the references
-				if (WinDialogAnimator == null) {
+				if (WinDialogAnimator == null) 
+				{
 						WinDialogAnimator = GetComponent<Animator> ();
 				}
 
-				if (firstStarFading == null) {
+				if (firstStarFading == null) 
+				{
 						firstStarFading = transform.Find ("Stars").Find ("FirstStarFading").GetComponent<Animator> ();
 				}
 
-				if (secondStarFading == null) {
+				if (secondStarFading == null) 
+				{
 						secondStarFading = transform.Find ("Stars").Find ("SecondStarFading").GetComponent<Animator> ();
 				}
 
-				if (thirdStarFading == null) {
+				if (thirdStarFading == null) 
+				{
 						thirdStarFading = transform.Find ("Stars").Find ("ThirdStarFading").GetComponent<Animator> ();
 				}
 
-				if (effectsAudioSource == null) {
+				if (effectsAudioSource == null) 
+				{
 						effectsAudioSource = GameObject.Find ("AudioSources").GetComponents<AudioSource> () [1];
 				}
 				
-				if (levelTitle == null) {
+				if (levelTitle == null) 
+		        {
 						levelTitle = transform.Find ("Level").GetComponent<Text> ();
 				}
 
-				if (timer == null) {
+				if (timer == null)
+				{
 						timer = GameObject.Find ("Time").GetComponent<Timer> ();
 				}
 		}
